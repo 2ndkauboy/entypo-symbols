@@ -8,14 +8,14 @@ gulp.task( 'base-sprites', function () {
 		.pipe( svgSymbols( {
 			svgClassname: 'entypo-base-icons',
 			id: 'entypo-icon-%f',
-			templates: ['default-svg']
+			templates: [ 'default-svg' ]
 		} ) )
 		.pipe( rename( function ( path ) {
 			path.basename = 'entypo-base-icons';
 		} ) )
 		.pipe( svgmin( {
 			plugins: [
-				{cleanupIDs: false}
+				{ cleanupIDs: false }
 			]
 		} ) )
 		.pipe( gulp.dest( 'symbols' ) );
@@ -26,17 +26,17 @@ gulp.task( 'social-sprites', function () {
 		.pipe( svgSymbols( {
 			svgClassname: 'entypo-social-icons',
 			id: 'entypo-icon-%f',
-			templates: ['default-svg']
+			templates: [ 'default-svg' ]
 		} ) )
 		.pipe( rename( function ( path ) {
 			path.basename = 'entypo-social-icons';
 		} ) )
 		.pipe( svgmin( {
 			plugins: [
-				{cleanupIDs: false}
+				{ cleanupIDs: false }
 			]
 		} ) )
 		.pipe( gulp.dest( 'symbols' ) );
 } );
 
-gulp.task( 'default', ['base-sprites', 'social-sprites'] );
+gulp.task( 'default', gulp.series( 'base-sprites', 'social-sprites' ) );
